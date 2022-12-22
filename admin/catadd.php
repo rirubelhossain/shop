@@ -1,8 +1,20 @@
 ﻿<?php
-
-echo "test";
+include_once '../classes/Category.php' ;
+///include_once '../lib/Database.php' ;
 
 ?>
+<?php
+
+    $cat = new Category() ;
+    if($_SERVER['REQUEST_METHOD']  == 'POST'){
+        $catname = $_POST['catName'] ;
+        $insetCat = $cat->catInsert($catname);
+    }
+
+?>
+
+
+
 
 <?php include 'inc/header.php';?>
 <?php include 'inc/sidebar.php';?>
@@ -10,11 +22,18 @@ echo "test";
             <div class="box round first grid">
                 <h2>Add New Category</h2>
                <div class="block copyblock"> 
-                 <form>
+                <?php
+                    if(isset($insetCat)){
+                        echo $insetCat ;
+                    }
+                
+                ?>
+
+                 <form action = "catadd.php" method = "POST">
                     <table class="form">					
                         <tr>
                             <td>
-                                <input type="text" placeholder="Enter Category Name..." class="medium" />
+                                <input type="text" name="catName" placeholder="Enter Category Name..." class="medium" />
                             </td>
                         </tr>
 						<tr> 
