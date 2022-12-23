@@ -48,6 +48,31 @@ class Category
         $result = $this->db->select($query);
         return $result ;
     }
+    public function catUpdate($catname , $id){
+
+        $catname = $this->fm->validation($catname) ;
+        $catname = mysqli_real_escape_string($this->db->link,$catname ) ;
+        $id = mysqli_real_escape_string($this->db->link,$id ) ;
+        
+        if(empty($catname)){
+            $insetmsg = "<span class = 'error'>Categoy field must not be empty !</span>";
+            return $insetmsg ;
+        }else{
+            $query = "UPDATE tbl_category 
+            SET
+            catName = '$catname' 
+            where  
+            catId = '$id'";
+            $update_row = $this->db->update($query);
+            if( $update_row ){
+                $msg = "<span class = 'success'> Category Updated Successfully.</span>";
+                return $msg ;
+            }else{
+                $msg = "<span class = 'error'> Category Not Updated.</span>";
+                return $msg ;
+            }            
+        }
+    }
 }
 
 

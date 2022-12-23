@@ -13,7 +13,7 @@ include_once '../classes/Category.php' ;
     $cat = new Category() ;
     if($_SERVER['REQUEST_METHOD']  == 'POST'){
         $catname = $_POST['catName'] ;
-        $insetCat = $cat->catInsert($catname);
+        $updateCat = $cat->catUpdate($catname, $id );
     }
 ?>
 <?php include 'inc/header.php';?>
@@ -24,7 +24,9 @@ include_once '../classes/Category.php' ;
                <div class="block copyblock"> 
                 
                 <?php
-                   
+                   if(isset($updateCat)){
+                    echo $updateCat ;
+                   }
 						 
                 ?>
                 <?php
@@ -34,8 +36,7 @@ include_once '../classes/Category.php' ;
                         while($result = $getCat->fetch_assoc()){
 
                 ?>
-
-                 <form action = "catedit.php" method = "POST">
+                 <form action = "" method = "POST">
                     <table class="form">					
                         <tr>
                             <td>
