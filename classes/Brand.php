@@ -36,6 +36,12 @@ class Brand
             }
         }
     }
+    public function getAllbra(){
+        $query = "SELECT * FROM tbl_brand ORDER BY bandId DESC ";
+        $result = $this->db->select($query);
+        return $result ;
+
+    }
 }
 
 
