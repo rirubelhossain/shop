@@ -16,6 +16,7 @@ class Brand
         $this->fm = new Format() ;
 
     }
+
     public function brandInsert($brandname){
         $brandname = $this->fm->validation($brandname) ;
         $brandname = mysqli_real_escape_string($this->db->link,$brandname ) ;
@@ -36,11 +37,43 @@ class Brand
             }
         }
     }
+
     public function getAllbra(){
         $query = "SELECT * FROM tbl_brand ORDER BY bandId DESC ";
         $result = $this->db->select($query);
         return $result ;
 
+    }
+
+    public function getBraById($id){
+        $query = "SELECT * FROM tbl_brand where bandId = '$id'";
+        $result = $this->db->select($query);
+        return $result ;
+    }
+
+    public function brandUpdate($brandname, $id ){
+        $brandname = $this->fm->validation($brandname) ;
+        $brandname = mysqli_real_escape_string($this->db->link,$brandname ) ;
+        $id = mysqli_real_escape_string($this->db->link,$id ) ;
+        
+        if(empty($brandname)){
+            $insetmsg = "<span class = 'error'>Brand field must not be empty !</span>";
+            return $insetmsg ;
+        }else{
+            $query = "UPDATE tbl_brand 
+            SET
+            brandName = '$brandname' 
+            where  
+            bandId = '$id'";
+            $update_row = $this->db->update($query);
+            if( $update_row ){
+                $msg = "<span class = 'success'> Brand Updated Successfully.</span>";
+                return $msg ;
+            }else{
+                $msg = "<span class = 'error'> Brand Not Updated.</span>";
+                return $msg ;
+            }            
+        }
     }
 }
 
