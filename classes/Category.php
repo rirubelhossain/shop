@@ -73,6 +73,18 @@ class Category
             }            
         }
     }
+    public function delCategory($delcatid){
+        $query = "DELETE FROM tbl_category where catId = '$delcatid'";
+        $del_result = $this->db->delete($query) ;
+
+        if($del_result){
+            $msg = "<span >Data has been deleted successfully.</sapn>";
+            return $msg ;
+        }else{
+            $msg = "<span >Data not deleted yet.</sapn>";
+            return $msg ;
+        }
+    }
 }
 
 
