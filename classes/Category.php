@@ -43,6 +43,11 @@ class Category
         return $result ;
 
     }
+    public function getCatById($id){
+        $query = "SELECT * FROM tbl_category where catId = '$id'";
+        $result = $this->db->select($query);
+        return $result ;
+    }
 }
 
 
