@@ -17,7 +17,7 @@ include_once '../classes/Brand.php' ;
 <?php include 'inc/sidebar.php';?>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Add New Category</h2>
+                <h2>Add New Brand</h2>
                <div class="block copyblock"> 
                 <?php
                     if(isset($insetBra)){

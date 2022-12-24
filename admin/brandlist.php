@@ -4,27 +4,26 @@
 <?php
 
 	$bra = new Brand() ;
-    /* 
-	if( isset($_GET['delcat'])){
-		$delcatid = $_GET['delcat'] ;
-
-		$del = $cat -> delCategory($delcatid) ;
+    
+    /// delete brand code here 
+	if( isset($_GET['delbrand'])){
+        $delBraid = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delbrand']);
+		$delbrand = $bra -> delCategory($delBraid) ;
 	}
-    */
+    
 
 ?>
 
 
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Category List</h2>
+                <h2>Brand List</h2>
 				<?php
 				
-                /*
-					if(isset($del)){
-						echo $del ;
+					if(isset($delbrand)){
+						echo $delbrand ;
 					}
-				*/
+				 
 				
 				?>
                 <div class="block">      
@@ -54,7 +53,7 @@
 						<tr class="odd gradeX">
 							<td><?php echo $i ;?></td>
 							<td><?php echo $result['brandName'];?></td>
-							<td><a href="braedit.php?braid=<?php echo $result['bandId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete')" href="?delcat=<?php echo $result['catId'];?>">Delete</a></td>
+							<td><a href="braedit.php?braid=<?php echo $result['bandId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete')" href="?delbrand=<?php echo $result['bandId'];?>">Delete</a></td>
 						</tr>
 					<?php 	}
 						}

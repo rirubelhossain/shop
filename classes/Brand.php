@@ -75,6 +75,19 @@ class Brand
             }            
         }
     }
+
+    public function delCategory($delBraid){
+        $query = "DELETE FROM tbl_brand where bandId = '$delBraid'";
+        $brand_result = $this->db->delete($query) ;
+
+        if($brand_result){
+            $msg = "<span class = 'success'>Data has been deleted successfully.</span>";
+            return $msg ;
+        }else{
+            $msg = "<span class = 'error'>Data not deleted yet.</span>";
+            return $msg ;
+        }
+    }
 }
 
 
