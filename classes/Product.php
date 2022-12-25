@@ -71,6 +71,12 @@ class Product
         $result = $this->db->select($query);
         return $result ;
     }
+
+    public function getProById($id){
+        $query = "SELECT * FROM tbl_product where productId = '$id'";
+        $result = $this->db->select($query);
+        return $result ;
+    }
 }
 
 

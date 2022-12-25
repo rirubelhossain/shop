@@ -59,7 +59,7 @@
 						?>
 
 					</td>
-					<td><a href="">Edit</a> || <a href="">Delete</a></td>
+					<td><a href="productedit.php?productId=<?php echo $result['productId'];?>">Edit</a> || <a href="">Delete</a></td>
 				</tr>
 				<?php }} ?>
 				 
