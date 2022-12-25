@@ -35,11 +35,17 @@ class Product
         $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
         $uploaded_image = "upload/".$unique_image;
 
-        if($productName == "" || $catId == "" || $bandId == "" || $body == "" || $price == "" || $type == "" ){
+        if($productName == "" || $catId == "" || $bandId == "" || $body == "" || $price == "" || $type == "" || $file_name == ""){
             $msg = "<span class = 'error'>Fields Must Not be empty !</span>";
             return $msg ;
-        }else{
-            //move_uploaded_file($file_temp, $uploaded_image);
+        }elseif ($file_size >1048567) {
+            echo "<span class='error'>Image Size should be less then 1MB!
+            </span>";
+           } elseif (in_array($file_ext, $permited) === false) {
+            echo "<span class='error'>You can upload only:-"
+            .implode(', ', $permited)."</span>";
+           }else{
+            move_uploaded_file($file_temp, $uploaded_image);
             $query = "INSERT INTO tbl_product(productName,catId,bandId,body,price,image,type)VALUES('$productName','$catId' , '$bandId' , '$body' , '$price', '$uploaded_image','$type')";
             $insert_result = $this->db->insert($query);
 
@@ -53,7 +59,15 @@ class Product
         }
     }
     public function getAllProduct(){
-        $query = "SELECT * FROM tbl_product ORDER BY productId  DESC ";
+        $query = "SELECT tbl_product.* , tbl_category.catName , tbl_brand.brandName
+        from tbl_product 
+        inner join tbl_category
+        on tbl_product.catId = tbl_category.catId 
+        inner join tbl_brand 
+        on tbl_product.bandId = tbl_brand.bandId 
+        ORDER BY tbl_product.productId  DESC ";
+
+
         $result = $this->db->select($query);
         return $result ;
     }
